@@ -1,18 +1,13 @@
 inputs_def:
   - handle: response
-    description: "The complete API response object returned from the
-      nano-banana-edit image submission endpoint. This object contains the
-      request_id field along with other metadata about the processing request.
-      Expected to be a valid JSON object structure."
+    description: "API response object from nano-banana-edit containing the request_id"
     json_schema:
       type: object
     nullable: false
 
 outputs_def:
   - handle: request_id
-    description: "The unique request identifier string extracted from the API
-      response. This ID is used to poll for and retrieve the final edited image
-      results. Format: alphanumeric string (e.g., 'abc123xyz789')."
+    description: "Unique request identifier for polling results"
     json_schema:
       type: string
 
@@ -24,10 +19,6 @@ executor:
 
 title: "Extract Request ID"
 icon: ":carbon:data-base:"
-description: "Extracts and isolates the request_id field from the
-  nano-banana-edit API response object. This task serves as a data
-  transformation step in the image editing pipeline, converting the complex API
-  response into a simple string identifier that can be used for subsequent
-  result retrieval operations. The extracted request_id is essential for
-  tracking and polling the asynchronous image processing job."
+description: "Extracts the request_id from nano-banana-edit API response for
+  result retrieval"
 private: true

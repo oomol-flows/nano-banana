@@ -1,11 +1,5 @@
 title: URL Images Nano Banana Edit
-description: "A comprehensive subflow that orchestrates AI-powered image editing
-  using the Nano Banana model. This workflow accepts image URLs and text
-  prompts, processes them through an LLM to refine the editing instructions,
-  submits the request to the Nano Banana API, and retrieves the final edited
-  images. The subflow integrates prompt enhancement via LLM, asynchronous job
-  submission, and result polling into a single reusable component suitable for
-  batch image processing tasks."
+description: "Edit images from URLs using Nano Banana AI with LLM-enhanced prompts"
 nodes:
   - node_id: nano-banana-edit#1
     task: self::nano-banana-edit
@@ -147,32 +141,19 @@ nodes:
         description: Edit instruction prompt describing the desired changes
 inputs_def:
   - handle: main_picture
-    description: "URL of the primary image to be edited. This is the main subject
-      image that will undergo AI-powered transformations. Must be a publicly
-      accessible URL pointing to a valid image file (JPEG, PNG, etc.). Example:
-      'https://example.com/main.jpg'. This image serves as the base for all
-      editing operations specified in the prompt."
+    description: "URL of primary image to edit"
     json_schema:
       type: string
     executor_name: python
   - handle: reference_picture
-    description: "Optional URL of a reference image used to guide the editing style
-      or provide additional context. Can be used for style transfer, color
-      matching, or as a visual example of desired changes. Must be publicly
-      accessible if provided. Leave empty (null) if not needed. Example:
-      'https://example.com/reference.jpg'."
+    description: "Optional reference image URL for style guidance"
     json_schema:
       type: string
     executor_name: python
     nullable: true
     value:
   - handle: prompt
-    description: "Natural language instruction describing the desired image
-      modifications. The prompt is automatically enhanced and refined by an LLM
-      before being sent to the Nano Banana API. Be clear about what changes to
-      apply. Examples: 'make the sky more dramatic with sunset colors', 'change
-      the person's clothing to formal attire', 'add snow to the landscape'. More
-      detailed prompts generally produce better results."
+    description: "Natural language editing instructions (enhanced by LLM)"
     json_schema:
       type: string
       ui:widget: text
@@ -181,22 +162,14 @@ inputs_def:
   - group: Optional
     collapsed: true
   - handle: poll_interval
-    description: "Time interval in seconds between result polling attempts. Controls
-      how frequently the subflow checks if image processing is complete.
-      Default: system-defined (typically 2-5 seconds). Lower values provide
-      faster response but increase API requests. Recommended range: 1-60
-      seconds."
+    description: "Seconds between polling attempts"
     json_schema:
       type: integer
     value:
     nullable: true
     executor_name: python
   - handle: max_attempts
-    description: "Maximum number of polling attempts before timing out. Prevents
-      indefinite waiting on stuck jobs. Default: system-defined (typically 30-60
-      attempts). Total timeout = poll_interval × max_attempts. Example: 5
-      seconds × 30 attempts = 150 seconds maximum wait. Recommended range: 5-120
-      attempts."
+    description: "Maximum polling attempts before timeout"
     json_schema:
       type: integer
     value:
@@ -209,13 +182,7 @@ outputs_def:
       items:
         type: string
     nullable: false
-    description: "Array of URLs pointing to the successfully edited images generated
-      by the Nano Banana AI model. Each URL provides direct access to a
-      processed image file. URLs are typically hosted on cloud storage and
-      remain accessible for a limited time. The number of images returned
-      depends on the API response. Example:
-      ['https://storage.example.com/edited_1.jpg',
-      'https://storage.example.com/edited_2.jpg']."
+    description: "Array of URLs to edited images"
     executor_name: python
 outputs_from:
   - handle: images

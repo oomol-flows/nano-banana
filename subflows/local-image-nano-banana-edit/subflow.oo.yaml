@@ -1,11 +1,6 @@
 title: Local Image Nano Banana Edit
-description: "An end-to-end subflow that enables AI-powered image editing for
-  local image files. This workflow automatically uploads local images to cloud
-  storage, processes them through the Nano Banana AI model with LLM-enhanced
-  prompts, retrieves the edited results, and optionally downloads them to a
-  local directory. It combines file upload, URL-based image editing, and result
-  downloading into a single reusable component, making it ideal for batch
-  processing local image collections."
+description: "Edit local images using Nano Banana AI by uploading to cloud and
+  optionally downloading results"
 nodes:
   - node_id: images-nano-banana-edit#2
     title: "Images Nano Banana Edit #2"
@@ -106,12 +101,14 @@ nodes:
           - input_handle: reference_picture
 inputs_def:
   - handle: main_picture
+    description: "Local path to primary image file"
     json_schema:
       type: string
       ui:widget: file
     nullable: false
     executor_name: nodejs
   - handle: reference_picture
+    description: "Optional local path to reference image file"
     json_schema:
       type: string
       ui:widget: file
@@ -119,13 +116,14 @@ inputs_def:
     nullable: true
     executor_name: nodejs
   - handle: prompt
-    description: Edit instruction prompt describing the desired changes
+    description: "Natural language editing instructions"
     json_schema:
       type: string
       ui:widget: text
     nullable: false
     executor_name: python
   - handle: save_dir
+    description: "Optional directory to save edited images locally"
     json_schema:
       type: string
       ui:widget: dir
@@ -133,14 +131,14 @@ inputs_def:
     value:
     executor_name: python
   - handle: poll_interval
-    description: Interval in seconds between polling attempts
+    description: "Seconds between polling attempts"
     json_schema:
       type: integer
     value:
     nullable: true
     executor_name: python
   - handle: max_attempts
-    description: Maximum number of polling attempts before timeout
+    description: "Maximum polling attempts before timeout"
     json_schema:
       type: integer
     value:
@@ -153,7 +151,7 @@ outputs_def:
       items:
         type: string
     nullable: false
-    description: Array of edited image URLs
+    description: "Array of edited image URLs or local paths"
     executor_name: python
 outputs_from:
   - handle: images
