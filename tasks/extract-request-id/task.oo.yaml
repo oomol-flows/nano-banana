@@ -1,13 +1,13 @@
 inputs_def:
   - handle: response
-    description: "API response object from nano-banana-edit containing the request_id"
+    description: "%api-response-object-from-nano-banana-edit-containing-the-request%"
     json_schema:
       type: object
     nullable: false
 
 outputs_def:
   - handle: request_id
-    description: "Unique request identifier for polling results"
+    description: "%unique-request-identifier-for-polling-results%"
     json_schema:
       type: string
 
@@ -17,8 +17,7 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Extract Request ID"
+title: "%extract-request-id%"
 icon: ":carbon:data-base:"
-description: "Extracts the request_id from nano-banana-edit API response for
-  result retrieval"
+description: "%extracts-the-request_id-from-nano-banana-edit-api-response-for-r%"
 private: true

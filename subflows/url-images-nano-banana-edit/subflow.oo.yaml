@@ -1,5 +1,5 @@
-title: URL Images Nano Banana Edit
-description: "Edit images from URLs using Nano Banana AI with LLM-enhanced prompts"
+title: "%url-images-nano-banana-edit%"
+description: "%edit-images-from-urls-using-nano-banana-ai-with-llm-enhanced-pro%"
 nodes:
   - node_id: nano-banana-edit#1
     task: self::nano-banana-edit
@@ -44,7 +44,7 @@ nodes:
         from_flow:
           - input_handle: max_attempts
   - node_id: llm-json#2
-    title: "大语言模型输出 JSON #2"
+    title: "%json-2%"
     inputs_from:
       - handle: messages
         value: null
@@ -141,19 +141,19 @@ nodes:
         description: Edit instruction prompt describing the desired changes
 inputs_def:
   - handle: main_picture
-    description: "URL of primary image to edit"
+    description: "%url-of-primary-image-to-edit%"
     json_schema:
       type: string
     executor_name: python
   - handle: reference_picture
-    description: "Optional reference image URL for style guidance"
+    description: "%optional-reference-image-url-for-style-guidance%"
     json_schema:
       type: string
-    executor_name: python
-    nullable: true
     value:
+    nullable: true
+    executor_name: python
   - handle: prompt
-    description: "Natural language editing instructions (enhanced by LLM)"
+    description: "%natural-language-editing-instructions-enhanced-by-llm%"
     json_schema:
       type: string
       ui:widget: text
@@ -162,14 +162,14 @@ inputs_def:
   - group: Optional
     collapsed: true
   - handle: poll_interval
-    description: "Seconds between polling attempts"
+    description: "%seconds-between-polling-attempts3%"
     json_schema:
       type: integer
     value:
     nullable: true
     executor_name: python
   - handle: max_attempts
-    description: "Maximum polling attempts before timeout"
+    description: "%maximum-polling-attempts-before-timeout3%"
     json_schema:
       type: integer
     value:
@@ -177,12 +177,12 @@ inputs_def:
     executor_name: python
 outputs_def:
   - handle: images
+    description: "%array-of-urls-to-edited-images%"
     json_schema:
       type: array
       items:
         type: string
     nullable: false
-    description: "Array of URLs to edited images"
     executor_name: python
 outputs_from:
   - handle: images

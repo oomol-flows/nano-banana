@@ -1,9 +1,8 @@
-title: Local Image Nano Banana Edit
-description: "Edit local images using Nano Banana AI by uploading to cloud and
-  optionally downloading results"
+title: "%local-image-nano-banana-edit%"
+description: "%edit-local-images-using-nano-banana-ai-by-uploading-to-cloud-and%"
 nodes:
   - node_id: images-nano-banana-edit#2
-    title: "Images Nano Banana Edit #2"
+    title: "%images-nano-banana-edit-2%"
     inputs_from:
       - handle: main_picture
         from_node:
@@ -29,14 +28,14 @@ nodes:
           - input_handle: max_attempts
     subflow: self::url-images-nano-banana-edit
   - node_id: upload-to-cloud#1
-    title: "上传文件到云端 #1"
+    title: "%1%"
     inputs_from:
       - handle: file
         from_flow:
           - input_handle: main_picture
     task: upload-to-cloud::upload-to-cloud
   - node_id: upload-to-cloud#2
-    title: "上传文件到云端 #2"
+    title: "%2%"
     inputs_from:
       - handle: file
         from_flow:
@@ -46,7 +45,7 @@ nodes:
             output_handle: file
     task: upload-to-cloud::upload-to-cloud
   - node_id: map#1
-    title: "映射 #1"
+    title: "%12%"
     inputs_from:
       - handle: array
         from_node:
@@ -69,7 +68,7 @@ nodes:
             from_flow:
               - input_handle: save_dir
   - node_id: +python#1
-    title: "Python #1"
+    title: "%python-1%"
     icon: ":logos:python:"
     task:
       ui:
@@ -101,14 +100,14 @@ nodes:
           - input_handle: reference_picture
 inputs_def:
   - handle: main_picture
-    description: "Local path to primary image file"
+    description: "%local-path-to-primary-image-file%"
     json_schema:
       type: string
       ui:widget: file
     nullable: false
     executor_name: nodejs
   - handle: reference_picture
-    description: "Optional local path to reference image file"
+    description: "%optional-local-path-to-reference-image-file%"
     json_schema:
       type: string
       ui:widget: file
@@ -116,29 +115,29 @@ inputs_def:
     nullable: true
     executor_name: nodejs
   - handle: prompt
-    description: "Natural language editing instructions"
+    description: "%natural-language-editing-instructions%"
     json_schema:
       type: string
       ui:widget: text
     nullable: false
     executor_name: python
   - handle: save_dir
-    description: "Optional directory to save edited images locally"
+    description: "%optional-directory-to-save-edited-images-locally%"
     json_schema:
       type: string
       ui:widget: dir
-    nullable: true
     value:
+    nullable: true
     executor_name: python
   - handle: poll_interval
-    description: "Seconds between polling attempts"
+    description: "%seconds-between-polling-attempts2%"
     json_schema:
       type: integer
     value:
     nullable: true
     executor_name: python
   - handle: max_attempts
-    description: "Maximum polling attempts before timeout"
+    description: "%maximum-polling-attempts-before-timeout2%"
     json_schema:
       type: integer
     value:
@@ -146,12 +145,12 @@ inputs_def:
     executor_name: python
 outputs_def:
   - handle: images
+    description: "%array-of-edited-image-urls-or-local-paths%"
     json_schema:
       type: array
       items:
         type: string
     nullable: false
-    description: "Array of edited image URLs or local paths"
     executor_name: python
 outputs_from:
   - handle: images

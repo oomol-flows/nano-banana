@@ -1,6 +1,6 @@
 nodes:
   - node_id: file-downloader#1
-    title: "下载文件 #1"
+    title: "%13%"
     inputs_from:
       - handle: url
         from_flow:
@@ -39,7 +39,7 @@ nodes:
         value: 0
     subflow: downloader::file-downloader
   - node_id: +python#1
-    title: "Generate storage address"
+    title: "%generate-storage-address%"
     icon: ":logos:python:"
     task:
       ui:

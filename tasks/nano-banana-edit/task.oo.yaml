@@ -1,13 +1,13 @@
 inputs_def:
   - handle: image_urls
-    description: "Array of publicly accessible image URLs to process"
+    description: "%array-of-publicly-accessible-image-urls-to-process%"
     json_schema:
       type: array
       items:
         type: string
     nullable: false
   - handle: prompt
-    description: "Natural language instruction describing desired image modifications"
+    description: "%natural-language-instruction-describing-desired-image-modificati%"
     json_schema:
       type: string
       ui:widget: text
@@ -15,7 +15,7 @@ inputs_def:
 
 outputs_def:
   - handle: result
-    description: "API response containing request_id and status information"
+    description: "%api-response-containing-request_id-and-status-information%"
     json_schema:
       type: object
 
@@ -25,8 +25,7 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Nano Banana Edit"
+title: "%nano-banana-edit%"
 icon: ":carbon:edit:"
-description: "Submits image editing requests to Nano Banana AI and returns a
-  request ID for tracking"
+description: "%submits-image-editing-requests-to-nano-banana-ai-and-returns-a-r%"
 private: true

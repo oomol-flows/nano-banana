@@ -1,19 +1,19 @@
 inputs_def:
   - handle: request_id
-    description: "Request ID from nano-banana-edit to retrieve results"
+    description: "%request-id-from-nano-banana-edit-to-retrieve-results%"
     json_schema:
       type: string
     nullable: false
   - group: Polling Options
     collapsed: true
   - handle: poll_interval
-    description: "Seconds between polling attempts"
+    description: "%seconds-between-polling-attempts%"
     json_schema:
       type: integer
     value:
     nullable: true
   - handle: max_attempts
-    description: "Maximum polling attempts before timeout"
+    description: "%maximum-polling-attempts-before-timeout%"
     json_schema:
       type: integer
     value:
@@ -21,7 +21,7 @@ inputs_def:
 
 outputs_def:
   - handle: images
-    description: "Array of URLs to the successfully edited images"
+    description: "%array-of-urls-to-the-successfully-edited-images%"
     json_schema:
       type: array
       items:
@@ -33,7 +33,7 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Nano Banana Get Result"
+title: "%nano-banana-get-result%"
 icon: ":carbon:document-download:"
-description: "Polls and retrieves edited images using request ID from nano-banana-edit"
+description: "%polls-and-retrieves-edited-images-using-request-id-from-nano-ban%"
 private: true

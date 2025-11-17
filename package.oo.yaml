@@ -1,3 +1,6 @@
+name: nano_banana
+displayName: "%display-name%"
+description: "%description%"
 version: 0.0.1
 scripts:
   bootstrap: |
@@ -9,3 +12,5 @@ dependencies:
   array: 0.1.5
   downloader: 0.1.1
   llm: 0.3.8
+repository: https://github.com/oomol-flows/nano-banana.git
+releaseNotes: init
