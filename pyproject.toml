@@ -1,5 +1,5 @@
 [project]
-name = "nano-banana-edit"
+name = "nano-banana"
 version = "0.1.0"
 description = ""
 authors = [
@@ -14,7 +14,7 @@ dependencies = [
 
 [tool.poetry]
 package-mode = false
-packages = [{include = "nano_banana_edit", from = "src"}]
+packages = [{include = "nano_banana", from = "src"}]
 
 
 [build-system]
