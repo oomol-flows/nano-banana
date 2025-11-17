@@ -1,4 +1,4 @@
-title: Test Nano Banana Edit
+title: Images Nano Banana Edit
 nodes:
   - node_id: nano-banana-edit#1
     task: self::nano-banana-edit
