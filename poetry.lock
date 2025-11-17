@@ -136,6 +136,21 @@ files = [
 ]
 
 [[package]]
+name = "downloaderx"
+version = "0.1.8"
+description = ""
+optional = false
+python-versions = "<3.13,>=3.10"
+groups = ["main"]
+files = [
+    {file = "downloaderx-0.1.8-py3-none-any.whl", hash = "sha256:b7e0de1f323b65662ccbaf7fb9c669d93974a66bee4c9fef97ded10b6dec2ee9"},
+    {file = "downloaderx-0.1.8.tar.gz", hash = "sha256:4c09899e2f0f73416ea7da4555c4c5ac0627d500742c331ef8a47aa1ab7aa428"},
+]
+
+[package.dependencies]
+requests = ">=2.32.4,<3.0.0"
+
+[[package]]
 name = "idna"
 version = "3.11"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -193,4 +208,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "b1420eb71c80f0677e2e11afe1f474fc65cbc11179640537a5b8eb7d3eee2441"
+content-hash = "5b5d502f1c20a8c173dcc15d2aeb327fa98c6c7cdc1a8e34cc85a7b8b55a3010"

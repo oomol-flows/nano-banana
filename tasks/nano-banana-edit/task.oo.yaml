@@ -1,13 +1,22 @@
 inputs_def:
   - handle: image_urls
-    description: "List of image URLs to edit"
+    description: "Array of publicly accessible image URLs to be processed. Each URL
+      should point to a valid image file (JPEG, PNG, etc.). The first image is
+      typically treated as the main subject, while additional images may serve
+      as reference or style sources. Example: ['https://example.com/image1.jpg',
+      'https://example.com/image2.jpg']. All URLs must be accessible via
+      HTTP/HTTPS."
     json_schema:
       type: array
       items:
         type: string
     nullable: false
   - handle: prompt
-    description: "Edit instruction prompt describing the desired changes"
+    description: "Natural language instruction describing the desired image
+      modifications. Be specific about what changes to apply (e.g., 'change the
+      sky to sunset colors', 'replace the background with a forest', 'add
+      dramatic lighting'). The AI model interprets this text to guide the image
+      editing process. More detailed prompts generally yield better results."
     json_schema:
       type: string
       ui:widget: text
@@ -15,7 +24,11 @@ inputs_def:
 
 outputs_def:
   - handle: result
-    description: "API response containing the edited image result"
+    description: "Complete API response object from the image editing submission
+      request. Contains the request_id field needed to retrieve results, along
+      with status information and metadata about the processing job. This object
+      should be passed to the extract-request-id task for further processing.
+      Structure: {request_id: string, status: string, ...}"
     json_schema:
       type: object
 
@@ -27,6 +40,12 @@ executor:
 
 title: "Nano Banana Edit"
 icon: ":carbon:edit:"
-description: "Edit images using the Nano Banana AI model via OOMOL Fusion API.
-  This task allows you to modify images based on text prompts, such as changing
-  colors, styles, or other visual attributes."
+description: "Submits image editing requests to the Nano Banana AI model via the
+  OOMOL Fusion API. This task initiates asynchronous image processing jobs that
+  can modify, enhance, or transform images based on natural language
+  instructions. It accepts multiple image URLs and a text prompt, then returns a
+  response object containing a request ID for tracking the job. The actual
+  edited images are retrieved separately using the nano-banana-get-result task.
+  Common use cases include style transfer, object modification, background
+  replacement, color adjustments, and creative image transformations."
+private: true

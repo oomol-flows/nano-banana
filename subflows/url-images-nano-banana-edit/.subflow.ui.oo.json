@@ -3,24 +3,42 @@
     "nano-banana-edit#1": {
       "rfNode": {
         "position": {
-          "x": 486,
-          "y": 0
+          "x": 972,
+          "y": 286
         }
       }
     },
     "extract-request-id#1": {
       "rfNode": {
         "position": {
-          "x": 972,
-          "y": 13.5
+          "x": 1458,
+          "y": 299.5
         }
       }
     },
     "nano-banana-get-result#1": {
       "rfNode": {
         "position": {
-          "x": 1458,
-          "y": 55.75
+          "x": 1944,
+          "y": 484.75
+        }
+      }
+    },
+    "llm-json#2": {
+      "rfNode": {
+        "position": {
+          "x": 436,
+          "y": 215.10513106270074
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Connection": true
+          }
+        },
+        "inputHandle": {
+          "cardCollapsed": true
         }
       }
     }
@@ -29,8 +47,8 @@
     "input": {
       "rfNode": {
         "position": {
-          "x": 0,
-          "y": 100.75
+          "x": -288.01806169323197,
+          "y": 511.44302261429925
         }
       },
       "sections": {
@@ -44,8 +62,8 @@
     "output": {
       "rfNode": {
         "position": {
-          "x": 1944,
-          "y": 154.75
+          "x": 2430,
+          "y": 583.75
         }
       }
     }

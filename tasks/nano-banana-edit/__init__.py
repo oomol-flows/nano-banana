@@ -9,6 +9,9 @@ class Outputs(typing.TypedDict):
 
 from oocana import Context
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import asyncio
 
 async def main(params: Inputs, context: Context) -> Outputs:
     """
@@ -36,15 +39,38 @@ async def main(params: Inputs, context: Context) -> Outputs:
         "prompt": params["prompt"]
     }
 
+    # Configure session with retry strategy for SSL and connection errors
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=5,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET", "POST"]
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+
     try:
         context.report_progress(10)
 
-        response = requests.post(
-            api_url,
-            headers=headers,
-            json=payload,
-            timeout=60.0
-        )
+        # Retry logic for SSL errors
+        for retry_attempt in range(3):
+            try:
+                response = session.post(
+                    api_url,
+                    headers=headers,
+                    json=payload,
+                    timeout=60.0
+                )
+                break
+            except requests.exceptions.SSLError as ssl_error:
+                if retry_attempt < 2:
+                    # Wait before retrying on SSL error
+                    await asyncio.sleep(1 * (retry_attempt + 1))
+                    continue
+                else:
+                    raise ssl_error
 
         context.report_progress(80)
 

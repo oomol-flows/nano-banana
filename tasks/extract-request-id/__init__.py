@@ -1,11 +1,9 @@
 #region generated meta
 import typing
-
 class Inputs(typing.TypedDict):
     response: dict
-
 class Outputs(typing.TypedDict):
-    request_id: str
+    request_id: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

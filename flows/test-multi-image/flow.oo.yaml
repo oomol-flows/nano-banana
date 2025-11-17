@@ -1,0 +1,34 @@
+title: "Test Multi Image Processing"
+
+nodes:
+  # Test case 1: One URL and one null
+  - node_id: images-nano-banana-edit#3
+    title: "Images Nano Banana Edit #3"
+    inputs_from:
+      - handle: main_picture
+        value: https://oomol-file-cache.c3557946c7b4aaf936d1a1a78f8a1901.r2.cloudflarestorage.com/019343aa-ff25-727c-a449-9017313539b0/d6940f09-4d02-4b2e-890a-f8cde2464388.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=b1d34ce13ccd429bdc7bd934c43a8595%2F20251117%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251117T075027Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=eea47ab429fd8827fe4f6211f23cda044d9ad24b21cfd7c276c242f8565d733b
+      - handle: reference_picture
+        value: null
+      - handle: prompt
+        value: 图片背景改为杭州西湖
+      - handle: poll_interval
+        value: null
+      - handle: max_attempts
+        value: null
+    subflow: self::url-images-nano-banana-edit
+  - node_id: local-image-nano-banana-edit#1
+    title: "Local Image Nano Banana Edit #1"
+    inputs_from:
+      - handle: main_picture
+        value: /oomol-driver/oomol-storage/ooimage.jpg
+      - handle: reference_picture
+        value: null
+      - handle: prompt
+        value: 背景换成太空
+      - handle: save_dir
+        value: /oomol-driver/oomol-storage/做梦
+      - handle: poll_interval
+        value: null
+      - handle: max_attempts
+        value: null
+    subflow: self::local-image-nano-banana-edit

@@ -1,0 +1,68 @@
+{
+  "nodes": {
+    "images-nano-banana-edit#2": {
+      "rfNode": {
+        "position": {
+          "x": 1488,
+          "y": 340.75
+        }
+      }
+    },
+    "upload-to-cloud#1": {
+      "rfNode": {
+        "position": {
+          "x": 1002,
+          "y": -113.47240105696673
+        }
+      }
+    },
+    "upload-to-cloud#2": {
+      "rfNode": {
+        "position": {
+          "x": 1002,
+          "y": 179.75
+        }
+      }
+    },
+    "map#1": {
+      "rfNode": {
+        "position": {
+          "x": 1974,
+          "y": 355.25
+        }
+      }
+    },
+    "+python#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 486,
+          "y": 179.75
+        }
+      },
+      "sections": {
+        "scriptlet": {
+          "cardCollapsed": true
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 412.75
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 2460,
+          "y": 466.75
+        }
+      }
+    }
+  }
+}

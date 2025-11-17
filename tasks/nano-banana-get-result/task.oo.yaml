@@ -1,19 +1,31 @@
 inputs_def:
   - handle: request_id
-    description: "The request ID returned from the submit API"
+    description: "The unique request identifier string obtained from the
+      nano-banana-edit task response. This ID tracks the asynchronous image
+      processing job and is required to retrieve the final edited images.
+      Format: alphanumeric string (e.g., 'abc123xyz789'). Must be a valid,
+      active request ID."
     json_schema:
       type: string
     nullable: false
   - group: Polling Options
     collapsed: true
   - handle: poll_interval
-    description: "Interval in seconds between polling attempts"
+    description: "Time interval in seconds to wait between successive API polling
+      requests. Controls how frequently the task checks whether the image
+      processing is complete. Default: system-defined (typically 2-5 seconds).
+      Lower values provide faster response but increase API load. Range: 1-60
+      seconds recommended."
     json_schema:
       type: integer
     value:
     nullable: true
   - handle: max_attempts
-    description: "Maximum number of polling attempts before timeout"
+    description: "Maximum number of polling attempts before the task times out and
+      fails. Prevents infinite waiting for stuck or failed jobs. Default:
+      system-defined (typically 30-60 attempts). Total timeout = poll_interval ×
+      max_attempts. Example: 5 seconds × 30 attempts = 150 seconds max wait
+      time. Range: 5-120 attempts recommended."
     json_schema:
       type: integer
     value:
@@ -21,7 +33,13 @@ inputs_def:
 
 outputs_def:
   - handle: images
-    description: "Array of edited image URLs"
+    description: "Array of URLs pointing to the successfully edited images. Each URL
+      provides direct access to a processed image file that can be downloaded,
+      displayed, or further processed. URLs are typically hosted on cloud
+      storage and remain accessible for a limited time. Example:
+      ['https://storage.example.com/edited_image_1.jpg',
+      'https://storage.example.com/edited_image_2.jpg']. The number of images
+      returned depends on the editing request."
     json_schema:
       type: array
       items:
@@ -35,6 +53,13 @@ executor:
 
 title: "Nano Banana Get Result"
 icon: ":carbon:document-download:"
-description: "Retrieve the result of a Nano Banana image editing request using
-  the request ID from the submit API. Polls the API until the result is ready or
-  timeout is reached."
+description: "Retrieves the final edited images from a Nano Banana AI processing
+  job using the request ID obtained from the submission step. This task
+  implements a polling mechanism that repeatedly checks the API until the image
+  processing is complete or a timeout occurs. It handles the asynchronous nature
+  of AI image editing by waiting for the job to finish and then returning the
+  URLs of the edited images. Configuration options allow fine-tuning of polling
+  behavior to balance between response speed and API efficiency. The task will
+  fail if the maximum attempts are exceeded or if the API reports an error
+  status."
+private: true

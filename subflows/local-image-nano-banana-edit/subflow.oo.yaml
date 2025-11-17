@@ -1,0 +1,163 @@
+title: Local Image Nano Banana Edit
+description: "An end-to-end subflow that enables AI-powered image editing for
+  local image files. This workflow automatically uploads local images to cloud
+  storage, processes them through the Nano Banana AI model with LLM-enhanced
+  prompts, retrieves the edited results, and optionally downloads them to a
+  local directory. It combines file upload, URL-based image editing, and result
+  downloading into a single reusable component, making it ideal for batch
+  processing local image collections."
+nodes:
+  - node_id: images-nano-banana-edit#2
+    title: "Images Nano Banana Edit #2"
+    inputs_from:
+      - handle: main_picture
+        from_node:
+          - node_id: upload-to-cloud#1
+            output_handle: remote_url
+      - handle: reference_picture
+        value: null
+        from_node:
+          - node_id: upload-to-cloud#2
+            output_handle: remote_url
+          - node_id: +python#1
+            output_handle: no_file
+      - handle: prompt
+        from_flow:
+          - input_handle: prompt
+      - handle: poll_interval
+        value: null
+        from_flow:
+          - input_handle: poll_interval
+      - handle: max_attempts
+        value: null
+        from_flow:
+          - input_handle: max_attempts
+    subflow: self::url-images-nano-banana-edit
+  - node_id: upload-to-cloud#1
+    title: "上传文件到云端 #1"
+    inputs_from:
+      - handle: file
+        from_flow:
+          - input_handle: main_picture
+    task: upload-to-cloud::upload-to-cloud
+  - node_id: upload-to-cloud#2
+    title: "上传文件到云端 #2"
+    inputs_from:
+      - handle: file
+        from_flow:
+          []
+        from_node:
+          - node_id: +python#1
+            output_handle: file
+    task: upload-to-cloud::upload-to-cloud
+  - node_id: map#1
+    title: "映射 #1"
+    inputs_from:
+      - handle: array
+        from_node:
+          - node_id: images-nano-banana-edit#2
+            output_handle: images
+    subflow: array::map
+    slots:
+      - slot_node_id: +slot#2
+        slotflow: self::+slotflow#1
+        inputs_def:
+          - handle: save_dir
+            json_schema:
+              type: string
+              ui:widget: dir
+            nullable: true
+            executor_name: python
+        inputs_from:
+          - handle: save_dir
+            value:
+            from_flow:
+              - input_handle: save_dir
+  - node_id: +python#1
+    title: "Python #1"
+    icon: ":logos:python:"
+    task:
+      ui:
+        default_width: 450
+      inputs_def:
+        - handle: reference_picture
+          json_schema:
+            type: string
+            ui:widget: file
+          nullable: true
+          value:
+          executor_name: nodejs
+      outputs_def:
+        - handle: file
+          json_schema:
+            type: string
+            ui:widget: file
+          nullable: false
+        - handle: no_file
+          json_schema:
+            type: "null"
+      executor:
+        name: python
+        options:
+          entry: scriptlets/+scriptlet#1.py
+    inputs_from:
+      - handle: reference_picture
+        from_flow:
+          - input_handle: reference_picture
+inputs_def:
+  - handle: main_picture
+    json_schema:
+      type: string
+      ui:widget: file
+    nullable: false
+    executor_name: nodejs
+  - handle: reference_picture
+    json_schema:
+      type: string
+      ui:widget: file
+    value:
+    nullable: true
+    executor_name: nodejs
+  - handle: prompt
+    description: Edit instruction prompt describing the desired changes
+    json_schema:
+      type: string
+      ui:widget: text
+    nullable: false
+    executor_name: python
+  - handle: save_dir
+    json_schema:
+      type: string
+      ui:widget: dir
+    nullable: true
+    value:
+    executor_name: python
+  - handle: poll_interval
+    description: Interval in seconds between polling attempts
+    json_schema:
+      type: integer
+    value:
+    nullable: true
+    executor_name: python
+  - handle: max_attempts
+    description: Maximum number of polling attempts before timeout
+    json_schema:
+      type: integer
+    value:
+    nullable: true
+    executor_name: python
+outputs_def:
+  - handle: images
+    json_schema:
+      type: array
+      items:
+        type: string
+    nullable: false
+    description: Array of edited image URLs
+    executor_name: python
+outputs_from:
+  - handle: images
+    from_node:
+      - node_id: map#1
+        output_handle: array
+title: Local Image Nano Banana Edit
