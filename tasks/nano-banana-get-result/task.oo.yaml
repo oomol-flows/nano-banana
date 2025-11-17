@@ -1,0 +1,40 @@
+inputs_def:
+  - handle: request_id
+    description: "The request ID returned from the submit API"
+    json_schema:
+      type: string
+    nullable: false
+  - group: Polling Options
+    collapsed: true
+  - handle: poll_interval
+    description: "Interval in seconds between polling attempts"
+    json_schema:
+      type: integer
+    value:
+    nullable: true
+  - handle: max_attempts
+    description: "Maximum number of polling attempts before timeout"
+    json_schema:
+      type: integer
+    value:
+    nullable: true
+
+outputs_def:
+  - handle: images
+    description: "Array of edited image URLs"
+    json_schema:
+      type: array
+      items:
+        type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Nano Banana Get Result"
+icon: ":carbon:document-download:"
+description: "Retrieve the result of a Nano Banana image editing request using
+  the request ID from the submit API. Polls the API until the result is ready or
+  timeout is reached."

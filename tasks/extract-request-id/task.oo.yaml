@@ -1,0 +1,22 @@
+inputs_def:
+  - handle: response
+    description: "The API response object from nano-banana-edit submit"
+    json_schema:
+      type: object
+    nullable: false
+
+outputs_def:
+  - handle: request_id
+    description: "Extracted request ID string"
+    json_schema:
+      type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Extract Request ID"
+icon: ":carbon:data-base:"
+description: "Extract the request_id field from the nano-banana-edit API response for use in getting results."

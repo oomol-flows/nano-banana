@@ -1,0 +1,92 @@
+#region generated meta
+import typing
+class Inputs(typing.TypedDict):
+    request_id: str
+    poll_interval: int | None
+    max_attempts: int | None
+class Outputs(typing.TypedDict):
+    images: typing.NotRequired[list[str]]
+#endregion
+
+from oocana import Context
+import requests
+import asyncio
+
+async def main(params: Inputs, context: Context) -> Outputs:
+    """
+    Retrieve the result of a Nano Banana image editing request with polling.
+
+    Args:
+        params: Input parameters containing the request ID and polling config
+        context: OOMOL execution context
+
+    Returns:
+        API response containing the edited image result and status
+    """
+    request_id = params["request_id"]
+    poll_interval = params.get("poll_interval") or 3
+    max_attempts = params.get("max_attempts") or 60
+
+    api_url = f"https://fusion-api.oomol.com/v1/fal-nano-banana-edit/result/{request_id}"
+
+    # Get OOMOL token from context
+    api_token = await context.oomol_token()
+
+    headers = {
+        "Authorization": api_token,
+        "Content-Type": "application/json"
+    }
+
+    attempt = 0
+
+    try:
+        while attempt < max_attempts:
+            attempt += 1
+            progress = min(10 + (attempt / max_attempts * 85), 95)
+            context.report_progress(int(progress))
+
+            response = requests.get(
+                api_url,
+                headers=headers,
+                timeout=60.0
+            )
+
+            response.raise_for_status()
+            result = response.json()
+
+            # Check if processing is complete
+            state = result.get("state", "")
+
+            # If completed or failed, extract and return image URLs
+            if state in ["completed", "success", "failed", "error"]:
+                context.report_progress(100)
+                # Extract image URLs from result.data.images
+                images_data = result.get("data", {}).get("images", [])
+                image_urls = [img.get("url") for img in images_data if img.get("url")]
+                return {"images": image_urls}
+
+            # If still processing, wait and retry
+            if state == "processing":
+                if attempt < max_attempts:
+                    await asyncio.sleep(poll_interval)
+                continue
+
+            # Unknown state, try to extract images anyway
+            context.report_progress(100)
+            images_data = result.get("data", {}).get("images", [])
+            image_urls = [img.get("url") for img in images_data if img.get("url")]
+            return {"images": image_urls}
+
+        # Max attempts reached
+        raise Exception(f"Polling timeout: Maximum attempts ({max_attempts}) reached. Last state: {result.get('state', 'unknown')}")
+
+    except requests.exceptions.RequestException as e:
+        error_message = f"API request failed: {str(e)}"
+        if hasattr(e, 'response') and e.response is not None:
+            try:
+                error_detail = e.response.json()
+                error_message += f"\nDetails: {error_detail}"
+            except:
+                error_message += f"\nStatus code: {e.response.status_code}"
+
+        raise Exception(error_message)

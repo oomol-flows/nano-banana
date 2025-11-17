@@ -1,0 +1,8 @@
+version: 0.0.1
+scripts:
+  bootstrap: |
+    npm install
+    poetry install --no-root
+icon: ./icon.png
+dependencies:
+  llm: 0.3.8

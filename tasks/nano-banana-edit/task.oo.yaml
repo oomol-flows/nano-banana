@@ -1,0 +1,32 @@
+inputs_def:
+  - handle: image_urls
+    description: "List of image URLs to edit"
+    json_schema:
+      type: array
+      items:
+        type: string
+    nullable: false
+  - handle: prompt
+    description: "Edit instruction prompt describing the desired changes"
+    json_schema:
+      type: string
+      ui:widget: text
+    nullable: false
+
+outputs_def:
+  - handle: result
+    description: "API response containing the edited image result"
+    json_schema:
+      type: object
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Nano Banana Edit"
+icon: ":carbon:edit:"
+description: "Edit images using the Nano Banana AI model via OOMOL Fusion API.
+  This task allows you to modify images based on text prompts, such as changing
+  colors, styles, or other visual attributes."
