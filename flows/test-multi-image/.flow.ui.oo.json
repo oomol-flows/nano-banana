@@ -3,8 +3,16 @@
     "images-nano-banana-edit#3": {
       "rfNode": {
         "position": {
-          "x": 1946.5,
-          "y": 546
+          "x": 0,
+          "y": 194.5
+        }
+      }
+    },
+    "local-image-nano-banana-edit#1": {
+      "rfNode": {
+        "position": {
+          "x": 486,
+          "y": 194.5
         }
       }
     }
