@@ -34,6 +34,7 @@ nodes:
           - input_handle: max_attempts
 inputs_def:
   - handle: image_urls
+    description: "%array-of-image-urls-to-edit%"
     json_schema:
       type: array
     nullable: false
