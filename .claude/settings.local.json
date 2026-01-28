@@ -14,7 +14,12 @@
       "Bash(pip show:*)",
       "Bash(python3:*)",
       "Read(//root/.oomol-studio/registry-package-store/**)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash",
+      "Read",
+      "Write",
+      "WebFetch",
+      "mcp__oomol"
     ],
     "deny": [],
     "ask": []

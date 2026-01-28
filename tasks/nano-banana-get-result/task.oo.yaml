@@ -36,4 +36,4 @@ executor:
 title: "%nano-banana-get-result%"
 icon: ":carbon:document-download:"
 description: "%polls-and-retrieves-edited-images-using-request-id-from-nano-ban%"
-private: true
+private: false

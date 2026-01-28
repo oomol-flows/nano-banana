@@ -6,34 +6,23 @@ nodes:
     inputs_from:
       - handle: image_urls
         value:
-          - "https://canvas-conversion-demo-dev.oss-cn-hangzhou.aliyuncs.com/%E\
-            5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-11-11_162033_040.jpg"
-        from_flow:
           []
+        from_flow:
+          - input_handle: image_urls
         from_node:
-          - node_id: llm-json#2
-            output_handle: image_urls
+          []
       - handle: prompt
         from_flow:
+          - input_handle: prompt
+        from_node:
           []
-        from_node:
-          - node_id: llm-json#2
-            output_handle: prompt
-
-  - node_id: extract-request-id#1
-    task: self::extract-request-id
-    inputs_from:
-      - handle: response
-        from_node:
-          - node_id: nano-banana-edit#1
-            output_handle: result
 
   - node_id: nano-banana-get-result#1
     task: self::nano-banana-get-result
     inputs_from:
       - handle: request_id
         from_node:
-          - node_id: extract-request-id#1
+          - node_id: nano-banana-edit#1
             output_handle: request_id
       - handle: poll_interval
         value:
@@ -43,114 +32,11 @@ nodes:
         value:
         from_flow:
           - input_handle: max_attempts
-  - node_id: llm-json#2
-    title: "%json-2%"
-    inputs_from:
-      - handle: messages
-        value: null
-      - handle: timeout
-        value: 30
-      - handle: retry_times
-        value: 0
-      - handle: retry_sleep
-        value: 3.5
-      - handle: model
-        value:
-          model: deepseek-chat
-          temperature: 0.5
-          top_p: 1
-          max_tokens: 128000
-      - handle: template
-        value:
-          - role: user
-            content: "- You are an expert in AI image editing. Your job is to refine user
-              intent into clear, precise AI image processing instructions that
-              accurately reflect the user's goals. \ 
-
-              - Key elements:
-
-              \  1. {{main_picture}} - main image (first in array)
-
-              \  2. {{reference_picture}} - reference image
-              (second in array)
-
-              \  3. {{prompt}} - User’s business needs
-
-              - Processing requirements:
-
-              \  - When users refer to \"main image\" they are
-              referring to {{main_picture}}
-
-              \  - When users refer to \"reference images\" they
-              are referring to {{reference_picture}}
-
-              \  - All other descriptions specify the processing
-              method to be applied
-
-              \  - {{reference_picture}} do not add to the output
-              image_urls without passing a value
-
-              \  - The final output prompt must be in English"
-        schema_overrides:
-          - schema:
-              type: array
-      - handle: skills
-        value:
-          []
-      - handle: stream
-        value: true
-      - handle: main_picture
-        from_flow:
-          - input_handle: main_picture
-      - handle: reference_picture
-        value:
-        from_flow:
-          - input_handle: reference_picture
-      - handle: prompt
-        from_flow:
-          - input_handle: prompt
-    task: llm::llm-json
-    inputs_def:
-      - handle: main_picture
-        json_schema:
-          type: string
-        nullable: false
-      - handle: reference_picture
-        json_schema:
-          type: string
-        nullable: true
-      - handle: prompt
-        json_schema:
-          type: string
-          ui:widget: text
-        nullable: false
-        description: Edit instruction prompt describing the desired changes
-    outputs_def:
-      - handle: image_urls
-        json_schema:
-          type: array
-          items:
-            type: string
-        nullable: false
-        description: List of image URLs to edit
-      - handle: prompt
-        json_schema:
-          type: string
-          ui:widget: text
-        nullable: false
-        description: Edit instruction prompt describing the desired changes
 inputs_def:
-  - handle: main_picture
-    description: "%url-of-primary-image-to-edit%"
+  - handle: image_urls
     json_schema:
-      type: string
-    executor_name: python
-  - handle: reference_picture
-    description: "%optional-reference-image-url-for-style-guidance%"
-    json_schema:
-      type: string
-    value:
-    nullable: true
+      type: array
+    nullable: false
     executor_name: python
   - handle: prompt
     description: "%natural-language-editing-instructions-enhanced-by-llm%"

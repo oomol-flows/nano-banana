@@ -8,9 +8,6 @@ scripts:
     poetry install --no-root
 icon: ./icon.png
 dependencies:
-  upload-to-cloud: 0.0.5
-  array: 0.1.5
-  downloader: 0.1.1
-  llm: 0.3.8
+  alicloud-oss: 0.0.3
 repository: https://github.com/oomol-flows/nano-banana.git
 releaseNotes: init

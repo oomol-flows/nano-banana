@@ -5,6 +5,8 @@ inputs_def:
       type: array
       items:
         type: string
+    value:
+      []
     nullable: false
   - handle: prompt
     description: "%natural-language-instruction-describing-desired-image-modificati%"
@@ -14,10 +16,10 @@ inputs_def:
     nullable: false
 
 outputs_def:
-  - handle: result
-    description: "%api-response-containing-request_id-and-status-information%"
+  - handle: request_id
+    description: "%request-id-for-retrieving-edited-images%"
     json_schema:
-      type: object
+      type: string
 
 executor:
   name: python
@@ -28,4 +30,4 @@ executor:
 title: "%nano-banana-edit%"
 icon: ":carbon:edit:"
 description: "%submits-image-editing-requests-to-nano-banana-ai-and-returns-a-r%"
-private: true
+private: false

@@ -1,18 +1,41 @@
 {
   "nodes": {
-    "images-nano-banana-edit#3": {
+    "nano-banana-edit#1": {
       "rfNode": {
         "position": {
-          "x": 0,
-          "y": 194.5
+          "x": 339,
+          "y": 286
         }
       }
     },
-    "local-image-nano-banana-edit#1": {
+    "nano-banana-edit#2": {
       "rfNode": {
         "position": {
-          "x": 486,
-          "y": 194.5
+          "x": 430.96962849299837,
+          "y": 835.740695040704
+        }
+      }
+    },
+    "upload-to-cloud#1": {
+      "rfNode": {
+        "position": {
+          "x": -38.53724913419998,
+          "y": 890.4406192868664
+        }
+      }
+    },
+    "nano-banana-get-result#1": {
+      "rfNode": {
+        "position": {
+          "x": 167.8254081871717,
+          "y": 1240.345200527179
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Polling Options": true
+          }
         }
       }
     }

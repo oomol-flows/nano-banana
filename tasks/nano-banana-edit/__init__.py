@@ -4,7 +4,7 @@ class Inputs(typing.TypedDict):
     image_urls: list[str]
     prompt: str
 class Outputs(typing.TypedDict):
-    result: typing.NotRequired[dict]
+    request_id: typing.NotRequired[str]
 #endregion
 
 from oocana import Context
@@ -80,7 +80,12 @@ async def main(params: Inputs, context: Context) -> Outputs:
 
         context.report_progress(100)
 
-        return {"result": result}
+        # Extract and return only the request_id
+        request_id = result.get("request_id")
+        if not request_id:
+            raise ValueError("API response does not contain request_id")
+
+        return {"request_id": request_id}
 
     except requests.exceptions.RequestException as e:
         error_message = f"API request failed: {str(e)}"
