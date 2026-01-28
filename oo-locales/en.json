@@ -1,6 +1,6 @@
 {
   "display-name": "Nano Banana",
-  "description": "AI-powered image editing using natural language instructions through OOMOL workflows with the Nano Banana model",
+  "description": "Transform images using natural language instructions powered by AI through intuitive OOMOL workflows with batch processing and automatic result handling",
   "test-multi-image-processing": "Test Multi Image Processing",
   "nano-banana-edit": "Nano Banana Edit",
   "submits-image-editing-requests-to-nano-banana-ai-and-returns-a-r": "Submits image editing requests to Nano Banana AI and returns a request ID for tracking",

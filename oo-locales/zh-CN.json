@@ -1,6 +1,6 @@
 {
   "display-name": "Nano Banana",
-  "description": "通过 OOMOL 工作流和 Nano Banana 模型,利用自然语言指令进行 AI 驱动的图像编辑",
+  "description": "通过直观的 OOMOL 工作流,使用 AI 驱动的自然语言指令转换图像,支持批处理和自动结果处理",
   "test-multi-image-processing": "测试多图像处理",
   "nano-banana-edit": "Nano Banana 编辑",
   "submits-image-editing-requests-to-nano-banana-ai-and-returns-a-r": "向 Nano Banana AI 提交图像编辑请求,并返回用于跟踪的请求 ID",

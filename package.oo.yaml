@@ -11,3 +11,8 @@ dependencies:
   alicloud-oss: 0.0.3
 repository: https://github.com/oomol-flows/nano-banana.git
 releaseNotes: init
+ui:
+  blocks:
+    - url-images-nano-banana-edit
+    - nano-banana-edit
+    - nano-banana-get-result
