@@ -10,7 +10,11 @@ icon: ./icon.png
 dependencies:
   alicloud-oss: 0.0.3
 repository: https://github.com/oomol-flows/nano-banana.git
-releaseNotes: init
+releaseNotes: |
+  - Added comprehensive AI image editing workflow with natural language instructions
+  - Enhanced locale support for bilingual UI descriptions and labels
+  - Improved documentation with user-focused examples and use cases
+  - Updated workflow configurations for better user experience
 ui:
   blocks:
     - url-images-nano-banana-edit

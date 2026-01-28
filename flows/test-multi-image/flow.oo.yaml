@@ -3,13 +3,13 @@ title: "%test-multi-image-processing%"
 nodes:
   # Test case 1: One URL and one null
   - node_id: nano-banana-edit#1
-    title: "Nano Banana 编辑 #1"
+    title: "%nano-banana-1%"
     inputs_from:
       - handle: image_urls
       - handle: prompt
     task: self::nano-banana-edit
   - node_id: nano-banana-edit#2
-    title: "Nano Banana 编辑 #2"
+    title: "%nano-banana-2%"
     inputs_from:
       - handle: image_urls
         value:
@@ -18,13 +18,13 @@ nodes:
         value: 图片加 皮卡丘
     task: self::nano-banana-edit
   - node_id: upload-to-cloud#1
-    title: "上传文件到云端 #1"
+    title: "%1%"
     inputs_from:
       - handle: file
         value: /oomol-driver/oomol-storage/ooimage.jpg
     task: alicloud-oss::upload-to-cloud
   - node_id: nano-banana-get-result#1
-    title: "Nano Banana 获取结果 #1"
+    title: "%nano-banana-12%"
     inputs_from:
       - handle: request_id
         value: 0d0a96f8-28b5-4523-808f-d01e169df8ca
@@ -34,7 +34,7 @@ nodes:
         value: null
     task: self::nano-banana-get-result
   - node_id: url-images-nano-banana-edit#2
-    title: "URL 图片 Nano Banana 编辑 #2"
+    title: "%url-nano-banana-2%"
     inputs_from:
       - handle: image_urls
       - handle: prompt

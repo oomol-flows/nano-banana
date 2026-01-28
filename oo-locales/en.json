@@ -1,4 +1,5 @@
 {
+  "1": "Upload file to the cloud #1",
   "display-name": "Nano Banana",
   "description": "Transform images using natural language instructions powered by AI through intuitive OOMOL workflows with batch processing and automatic result handling",
   "test-multi-image-processing": "Test Multi Image Processing",
@@ -19,5 +20,9 @@
   "natural-language-editing-instructions-enhanced-by-llm": "Natural language description of desired edits",
   "seconds-between-polling-attempts3": "Seconds to wait between status checks",
   "maximum-polling-attempts-before-timeout3": "Maximum number of status checks before timeout",
-  "array-of-urls-to-edited-images": "Array of URLs to edited images"
+  "array-of-urls-to-edited-images": "Array of URLs to edited images",
+  "nano-banana-1": "Nano Banana Edit #1",
+  "nano-banana-2": "Nano Banana Edit #2",
+  "nano-banana-12": "Nano Banana get result #1",
+  "url-nano-banana-2": "URL image Nano Banana Edit #2"
 }
