@@ -1,0 +1,130 @@
+title: "%text-to-image-nano-banana%"
+description: "%text-to-image-nano-banana-description%"
+nodes:
+  - node_id: nano-banana-generate#1
+    task: self::nano-banana-generate
+    inputs_from:
+      - handle: prompt
+        from_flow:
+          - input_handle: prompt
+        from_node:
+          []
+      - handle: num_images
+        value: null
+        from_flow:
+          - input_handle: num_images
+      - handle: output_format
+        value: null
+        from_flow:
+          - input_handle: output_format
+      - handle: aspect_ratio
+        value: null
+        from_flow:
+          - input_handle: aspect_ratio
+  - node_id: nano-banana-get-result#1
+    title: "Nano Banana 获取结果 #1"
+    inputs_from:
+      - handle: session_id
+        from_node:
+          - node_id: nano-banana-generate#1
+            output_handle: session_id
+      - handle: poll_interval
+        value: null
+        from_flow:
+          - input_handle: poll_interval
+      - handle: max_attempts
+        value: null
+        from_flow:
+          - input_handle: max_attempts
+    task: self::nano-banana-get-result
+inputs_def:
+  - handle: prompt
+    description: "%text-to-image-prompt%"
+    json_schema:
+      type: string
+      ui:widget: text
+    nullable: false
+    executor_name: nodejs
+  - group: Image Options
+    collapsed: true
+  - handle: num_images
+    description: "%text-to-image-num-images%"
+    json_schema:
+      type: integer
+    value: null
+    nullable: true
+    executor_name: nodejs
+  - handle: output_format
+    description: "%text-to-image-output-format%"
+    json_schema:
+      enum:
+        - jpeg
+        - png
+        - webp
+      ui:options:
+        labels:
+          - JPEG
+          - PNG
+          - WebP
+    value: null
+    nullable: true
+    executor_name: nodejs
+  - handle: aspect_ratio
+    description: "%text-to-image-aspect-ratio%"
+    json_schema:
+      enum:
+        - "21:9"
+        - "1:1"
+        - "4:3"
+        - "3:2"
+        - "2:3"
+        - "5:4"
+        - "4:5"
+        - "3:4"
+        - "16:9"
+        - "9:16"
+      ui:options:
+        labels:
+          - "21:9 (Ultra Wide)"
+          - "1:1 (Square)"
+          - "4:3 (Standard)"
+          - "3:2 (Photo)"
+          - "2:3 (Portrait Photo)"
+          - "5:4 (Classic)"
+          - "4:5 (Portrait Classic)"
+          - "3:4 (Portrait)"
+          - "16:9 (Widescreen)"
+          - "9:16 (Mobile)"
+    value: null
+    nullable: true
+    executor_name: nodejs
+  - group: Polling Options
+    collapsed: true
+  - handle: poll_interval
+    description: "%text-to-image-poll-interval%"
+    json_schema:
+      type: integer
+    value: null
+    nullable: true
+    executor_name: nodejs
+  - handle: max_attempts
+    description: "%text-to-image-max-attempts%"
+    json_schema:
+      type: integer
+    value: null
+    nullable: true
+    executor_name: nodejs
+outputs_def:
+  - handle: images
+    description: "%text-to-image-generated-images%"
+    json_schema:
+      type: array
+      items:
+        type: string
+    nullable: false
+    executor_name: nodejs
+outputs_from:
+  - handle: images
+    from_node:
+      - node_id: nano-banana-get-result#1
+        output_handle: images

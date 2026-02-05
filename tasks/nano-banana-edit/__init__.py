@@ -4,7 +4,7 @@ class Inputs(typing.TypedDict):
     image_urls: list[str]
     prompt: str
 class Outputs(typing.TypedDict):
-    request_id: typing.NotRequired[str]
+    session_id: typing.NotRequired[str]
 #endregion
 
 from oocana import Context
@@ -24,7 +24,7 @@ async def main(params: Inputs, context: Context) -> Outputs:
     Returns:
         API response containing the edited image result
     """
-    api_url = "https://fusion-api.oomol.com/v1/fal-nano-banana-edit/submit"
+    api_url = "https://fusion-api.oomol.com/v1/fal-nano-banana/submit"
 
     # Get OOMOL token from context (no need for manual API key input)
     api_token = await context.oomol_token()
@@ -78,14 +78,16 @@ async def main(params: Inputs, context: Context) -> Outputs:
 
         result = response.json()
 
+        print(result)
+
         context.report_progress(100)
 
-        # Extract and return only the request_id
-        request_id = result.get("request_id")
-        if not request_id:
-            raise ValueError("API response does not contain request_id")
+        # Extract and return only the session_id
+        session_id = result.get("sessionID")
+        if not session_id:
+            raise ValueError("API response does not contain sessionID")
 
-        return {"request_id": request_id}
+        return {"session_id": session_id}
 
     except requests.exceptions.RequestException as e:
         error_message = f"API request failed: {str(e)}"

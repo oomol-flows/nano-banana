@@ -1,13 +1,5 @@
 {
   "nodes": {
-    "nano-banana-edit#1": {
-      "rfNode": {
-        "position": {
-          "x": 339,
-          "y": 286
-        }
-      }
-    },
     "nano-banana-edit#2": {
       "rfNode": {
         "position": {
@@ -35,6 +27,30 @@
         "inputs": {
           "groupCollapsed": {
             "Polling Options": true
+          }
+        }
+      }
+    },
+    "url-images-nano-banana-edit#2": {
+      "contentWidth": 350,
+      "rfNode": {
+        "position": {
+          "x": 1030.9696284929983,
+          "y": 1240.345200527179
+        }
+      }
+    },
+    "nano-banana-images-edit#1": {
+      "rfNode": {
+        "position": {
+          "x": 292,
+          "y": 244.3126220703125
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Optional": true
           }
         }
       }

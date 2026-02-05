@@ -1,7 +1,7 @@
 #region generated meta
 import typing
 class Inputs(typing.TypedDict):
-    request_id: str
+    session_id: str
     poll_interval: int | None
     max_attempts: int | None
 class Outputs(typing.TypedDict):
@@ -25,11 +25,11 @@ async def main(params: Inputs, context: Context) -> Outputs:
     Returns:
         API response containing the edited image result and status
     """
-    request_id = params["request_id"]
+    session_id = params["session_id"]
     poll_interval = params.get("poll_interval") or 3
     max_attempts = params.get("max_attempts") or 60
 
-    api_url = f"https://fusion-api.oomol.com/v1/fal-nano-banana-edit/result/{request_id}"
+    api_url = f"https://fusion-api.oomol.com/v1/fal-nano-banana/result/{session_id}"
 
     # Get OOMOL token from context
     api_token = await context.oomol_token()

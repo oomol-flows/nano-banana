@@ -2,12 +2,6 @@ title: "%test-multi-image-processing%"
 
 nodes:
   # Test case 1: One URL and one null
-  - node_id: nano-banana-edit#1
-    title: "%nano-banana-1%"
-    inputs_from:
-      - handle: image_urls
-      - handle: prompt
-    task: self::nano-banana-edit
   - node_id: nano-banana-edit#2
     title: "%nano-banana-2%"
     inputs_from:
@@ -26,7 +20,7 @@ nodes:
   - node_id: nano-banana-get-result#1
     title: "%nano-banana-12%"
     inputs_from:
-      - handle: request_id
+      - handle: session_id
         value: 0d0a96f8-28b5-4523-808f-d01e169df8ca
       - handle: poll_interval
         value: null
@@ -42,4 +36,21 @@ nodes:
         value: null
       - handle: max_attempts
         value: null
-    subflow: self::url-images-nano-banana-edit
+    subflow: self::nano-banana-images-edit
+  - node_id: nano-banana-images-edit#1
+    title: "Nano Banana 图片编辑 #1"
+    inputs_from:
+      - handle: image_urls
+        value:
+          - https://v3b.fal.media/files/b/0a8d3ad1/yByJXKbwfxOsXasY_SVsA.png
+        schema_overrides:
+          - path: 0
+            schema:
+              type: string
+      - handle: prompt
+        value: 男人变为女人
+      - handle: poll_interval
+        value: null
+      - handle: max_attempts
+        value: null
+    subflow: self::nano-banana-images-edit

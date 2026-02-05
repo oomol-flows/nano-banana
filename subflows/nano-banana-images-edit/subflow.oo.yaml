@@ -20,10 +20,10 @@ nodes:
   - node_id: nano-banana-get-result#1
     task: self::nano-banana-get-result
     inputs_from:
-      - handle: request_id
+      - handle: session_id
         from_node:
           - node_id: nano-banana-edit#1
-            output_handle: request_id
+            output_handle: session_id
       - handle: poll_interval
         value:
         from_flow:
@@ -37,6 +37,8 @@ inputs_def:
     description: "%array-of-image-urls-to-edit%"
     json_schema:
       type: array
+      items:
+        type: string
     nullable: false
     executor_name: python
   - handle: prompt

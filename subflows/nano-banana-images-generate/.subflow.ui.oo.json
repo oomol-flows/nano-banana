@@ -1,18 +1,18 @@
 {
   "nodes": {
-    "nano-banana-edit#1": {
+    "nano-banana-generate#1": {
       "rfNode": {
         "position": {
-          "x": 972,
-          "y": 160.5
+          "x": 59.919424460431685,
+          "y": -30.992805755395683
         }
       }
     },
     "nano-banana-get-result#1": {
       "rfNode": {
         "position": {
-          "x": 1458,
-          "y": 296.5
+          "x": 699.6143884892086,
+          "y": -3.9928057553956933
         }
       }
     }
@@ -22,13 +22,14 @@
       "rfNode": {
         "position": {
           "x": 0,
-          "y": 328
+          "y": -500
         }
       },
       "sections": {
         "subflowInput": {
           "groupCollapsed": {
-            "Optional": true
+            "Image Options": true,
+            "Polling Options": true
           }
         }
       }
@@ -36,8 +37,8 @@
     "output": {
       "rfNode": {
         "position": {
-          "x": 1944,
-          "y": 395.5
+          "x": 1000,
+          "y": -500
         }
       }
     }

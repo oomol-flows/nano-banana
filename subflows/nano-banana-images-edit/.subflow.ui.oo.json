@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "nano-banana-edit#1": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "nano-banana-get-result#1": {
+      "rfNode": {
+        "position": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": -500
+        }
+      },
+      "sections": {
+        "subflowInput": {
+          "groupCollapsed": {
+            "Optional": true
+          }
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 1000,
+          "y": -500
+        }
+      }
+    }
+  }
+}

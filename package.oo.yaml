@@ -6,7 +6,7 @@ scripts:
   bootstrap: |
     npm install
     poetry install --no-root
-icon: ./icon.png
+icon: "./icon.png"
 dependencies:
   alicloud-oss: 0.0.3
 repository: https://github.com/oomol-flows/nano-banana.git
@@ -17,6 +17,8 @@ releaseNotes: |
   - Updated workflow configurations for better user experience
 ui:
   blocks:
-    - url-images-nano-banana-edit
+    - nano-banana-images-generate
+    - nano-banana-images-edit
     - nano-banana-edit
+    - nano-banana-generate
     - nano-banana-get-result

@@ -16,7 +16,7 @@ inputs_def:
     nullable: false
 
 outputs_def:
-  - handle: request_id
+  - handle: session_id
     description: "%request-id-for-retrieving-edited-images%"
     json_schema:
       type: string
@@ -30,4 +30,4 @@ executor:
 title: "%nano-banana-edit%"
 icon: ":carbon:edit:"
 description: "%submits-image-editing-requests-to-nano-banana-ai-and-returns-a-r%"
-private: false
+private: true

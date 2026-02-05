@@ -1,5 +1,5 @@
 inputs_def:
-  - handle: request_id
+  - handle: session_id
     description: "%request-id-from-nano-banana-edit-to-retrieve-results%"
     json_schema:
       type: string
@@ -36,4 +36,4 @@ executor:
 title: "%nano-banana-get-result%"
 icon: ":carbon:document-download:"
 description: "%polls-and-retrieves-edited-images-using-request-id-from-nano-ban%"
-private: false
+private: true

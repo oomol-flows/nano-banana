@@ -1,0 +1,74 @@
+inputs_def:
+  - handle: prompt
+    description: "%nano-banana-generate-prompt%"
+    json_schema:
+      type: string
+      ui:widget: text
+    nullable: false
+  - group: Image Options
+    collapsed: false
+  - handle: num_images
+    description: "%nano-banana-generate-num-images%"
+    json_schema:
+      type: integer
+    value: 1
+    nullable: true
+  - handle: output_format
+    description: "%nano-banana-generate-output-format%"
+    json_schema:
+      enum:
+        - jpeg
+        - png
+        - webp
+      ui:options:
+        labels:
+          - JPEG
+          - PNG
+          - WebP
+    value: png
+    nullable: true
+  - handle: aspect_ratio
+    description: "%nano-banana-generate-aspect-ratio%"
+    json_schema:
+      enum:
+        - "21:9"
+        - "1:1"
+        - "4:3"
+        - "3:2"
+        - "2:3"
+        - "5:4"
+        - "4:5"
+        - "3:4"
+        - "16:9"
+        - "9:16"
+      ui:options:
+        labels:
+          - "21:9 (Ultra Wide)"
+          - "1:1 (Square)"
+          - "4:3 (Standard)"
+          - "3:2 (Photo)"
+          - "2:3 (Portrait Photo)"
+          - "5:4 (Classic)"
+          - "4:5 (Portrait Classic)"
+          - "3:4 (Portrait)"
+          - "16:9 (Widescreen)"
+          - "9:16 (Mobile)"
+    value: 1:1
+    nullable: true
+
+outputs_def:
+  - handle: session_id
+    description: "%nano-banana-generate-session-id%"
+    json_schema:
+      type: string
+
+executor:
+  name: nodejs
+  options:
+    entry: index.ts
+    spawn: false
+
+title: "%nano-banana-generate%"
+icon: ":carbon:image-search:"
+description: "%nano-banana-generate-description%"
+private: true
