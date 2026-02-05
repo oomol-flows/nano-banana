@@ -1,7 +1,7 @@
 name: nano_banana
 displayName: "%display-name%"
 description: "%description%"
-version: 0.0.3
+version: 0.0.5
 scripts:
   bootstrap: |
     npm install
@@ -10,11 +10,6 @@ icon: "./icon.png"
 dependencies:
   alicloud-oss: 0.0.3
 repository: https://github.com/oomol-flows/nano-banana.git
-releaseNotes: |
-  - Added comprehensive AI image editing workflow with natural language instructions
-  - Enhanced locale support for bilingual UI descriptions and labels
-  - Improved documentation with user-focused examples and use cases
-  - Updated workflow configurations for better user experience
 ui:
   blocks:
     - nano-banana-images-generate
@@ -22,3 +17,9 @@ ui:
     - nano-banana-edit
     - nano-banana-generate
     - nano-banana-get-result
+releaseNotes: |
+  - Added text-to-image generation capability with customizable format and aspect ratio options
+  - Enhanced image editing workflow with improved natural language instruction processing
+  - Introduced comprehensive dual-mode functionality: create from text or edit existing images
+  - Updated documentation with cost-effective positioning and extensive usage examples
+  - Refined all UI descriptions and labels for better clarity and user experience
