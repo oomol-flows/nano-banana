@@ -1,7 +1,7 @@
 name: nano_banana
 displayName: "%display-name%"
 description: "%description%"
-version: 0.0.6
+version: 0.0.7
 scripts:
   bootstrap: |
     npm install

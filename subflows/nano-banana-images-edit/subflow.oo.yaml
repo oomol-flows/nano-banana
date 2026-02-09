@@ -39,6 +39,7 @@ inputs_def:
       type: array
       items:
         type: string
+        format: uri
     nullable: false
     executor_name: python
   - handle: prompt
