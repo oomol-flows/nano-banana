@@ -1,7 +1,7 @@
 name: nano_banana
 displayName: "%display-name%"
 description: "%description%"
-version: 0.0.5
+version: 0.0.6
 scripts:
   bootstrap: |
     npm install
@@ -17,9 +17,4 @@ ui:
     - nano-banana-edit
     - nano-banana-generate
     - nano-banana-get-result
-releaseNotes: |
-  - Added text-to-image generation capability with customizable format and aspect ratio options
-  - Enhanced image editing workflow with improved natural language instruction processing
-  - Introduced comprehensive dual-mode functionality: create from text or edit existing images
-  - Updated documentation with cost-effective positioning and extensive usage examples
-  - Refined all UI descriptions and labels for better clarity and user experience
+releaseNotes: "fix: add params type"
