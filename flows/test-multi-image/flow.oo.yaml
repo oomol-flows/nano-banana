@@ -42,13 +42,13 @@ nodes:
     inputs_from:
       - handle: image_urls
         value:
-          - https://v3b.fal.media/files/b/0a8d3ad1/yByJXKbwfxOsXasY_SVsA.png
+          - https://fal.media/files/monkey/e6RtJf_ue0vyWzeiEmTby.png
         schema_overrides:
           - path: 0
             schema:
               type: string
       - handle: prompt
-        value: 男人变为女人
+        value: 狗头变为女人
       - handle: poll_interval
         value: null
       - handle: max_attempts

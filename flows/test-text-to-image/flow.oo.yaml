@@ -6,9 +6,8 @@ nodes:
     subflow: self::nano-banana-images-generate
     inputs_from:
       - handle: prompt
-        value: "一个男人在车上倒立，双腿岔开，手扶方向盘"
       - handle: num_images
-        value: 1
+        value: 2
       - handle: output_format
         value: "png"
       - handle: aspect_ratio

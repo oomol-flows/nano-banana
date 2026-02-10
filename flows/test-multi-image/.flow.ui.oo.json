@@ -43,12 +43,17 @@
     "nano-banana-images-edit#1": {
       "rfNode": {
         "position": {
-          "x": 292,
-          "y": 244.3126220703125
+          "x": 152,
+          "y": 136.3126220703125
         }
       },
       "sections": {
         "inputs": {
+          "collapsed": {
+            "prompt": {
+              "[]": false
+            }
+          },
           "groupCollapsed": {
             "Optional": true
           }

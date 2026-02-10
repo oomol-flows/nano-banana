@@ -1,0 +1,38 @@
+{
+  "nodes": {
+    "url2file#1": {
+      "rfNode": {
+        "position": {
+          "x": 515.4285714285716,
+          "y": -486.38274932614553
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Strategy": true,
+            "Connection": true
+          }
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": -500
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 1000,
+          "y": -500
+        }
+      }
+    }
+  }
+}

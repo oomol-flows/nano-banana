@@ -1,7 +1,7 @@
 name: nano_banana
 displayName: "%display-name%"
 description: "%description%"
-version: 0.0.7
+version: 0.1.4
 scripts:
   bootstrap: |
     npm install
@@ -9,6 +9,8 @@ scripts:
 icon: "./icon.png"
 dependencies:
   alicloud-oss: 0.0.3
+  array: 0.1.5
+  downloader: 0.1.4
 repository: https://github.com/oomol-flows/nano-banana.git
 ui:
   blocks:
