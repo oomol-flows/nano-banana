@@ -19,4 +19,4 @@ ui:
     - nano-banana-edit
     - nano-banana-generate
     - nano-banana-get-result
-releaseNotes: "fix: add params type"
+releaseNotes: "fix: change return type"
